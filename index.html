@@ -13,40 +13,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── DESIGN TOKENS ─────────────────────────────────────────── */
+    /* ── DESIGN SYSTEM ─────────────────────────────────────────── */
     :root {
       --bg: #0e0e0b;
       --s950: #0e0a07;
       --s900: #1a1814;
-      --on-surface: #EDE0C8;
-      --orange: #E0542A;
+      --on-surface: #EDE0C8; /* Den lækre creme farve fra din tekst */
+      --orange: #E0542A;     /* Den brændte orange fra plakaten */
       --orange-hover: #E86B42;
-      --s100: #EDE0C8;
+      --teal: #5A9FB8;
       --fh: "Plus Jakarta Sans", sans-serif;
       --fb: "Manrope", sans-serif;
     }
 
-    /* ── RESET & BASE ──────────────────────────────────────────── */
+    /* ── BASE & GRAIN ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--on-surface);
       font-family: var(--fb);
-      overflow-x: hidden;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* GRAIN EFFECT */
+    /* Subtil tekstur over hele siden */
     body::after {
-      content: ""; position: fixed; inset: 0; z-index: 999; pointer-events: none; opacity: .03;
+      content: ""; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: .03;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* ── NAV ────────────────────────────────────────────────── */
+    /* ── NAVIGATION ────────────────────────────────────────────── */
     .nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(14, 10, 7, 0.9);
+      background: rgba(14, 10, 7, 0.85);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(224, 84, 42, 0.1);
     }
@@ -61,93 +61,84 @@
     .nav-links { display: none; gap: 3rem; }
     .nav-links a { 
       font-family: var(--fh); font-weight: 800; text-transform: uppercase; 
-      color: var(--s100); text-decoration: none; transition: 0.2s; font-size: 0.9rem;
+      color: var(--on-surface); text-decoration: none; transition: 0.2s; font-size: 0.9rem;
     }
-    .nav-links a:hover { color: var(--orange); }
+    .nav-links a:hover { color: var(--orange); transform: skewX(-3deg); }
 
     .hamburger { background: none; border: none; color: var(--on-surface); cursor: pointer; display: flex; }
     .ms { font-family: "Material Symbols Outlined"; font-size: 32px; }
 
-    .mobile-menu {
-      display: none; flex-direction: column; gap: 2rem;
-      padding: 2rem; background: var(--s950);
-      font-family: var(--fh); font-weight: 800; text-transform: uppercase;
-    }
-    .mobile-menu.active { display: flex; }
-    .mobile-menu a { color: var(--s100); text-decoration: none; font-size: 1.5rem; }
-
-    /* ── HERO ───────────────────────────────────────────────── */
+    /* ── HERO ─────────────────────────────────────────────────── */
     .hero {
       position: relative;
-      min-height: 100svh; width: 100%;
-      background-color: var(--bg);
-      background-image: linear-gradient(to bottom, rgba(14,14,11,0.2), rgba(14,14,11,1)), 
-                        url('DIN_BILLEDE_URL_HER.jpg'); /* Indsæt dit billede her */
+      min-height: 100svh;
+      display: flex; align-items: center;
+      padding: 6rem 2rem 2rem;
+      /* Erstat 'baggrund.jpg' med dit filnavn */
+      background: linear-gradient(to right, rgba(14,14,11,0.9) 30%, rgba(14,14,11,0.2) 100%), 
+                  url('HER_SÆTTER_DU_DIT_BILLEDE.jpg'); 
       background-size: cover;
       background-position: center;
-      display: flex; align-items: center; justify-content: center;
-      padding: 8rem 2rem 4rem;
     }
 
-    .hero-content {
-      max-width: 1000px; width: 100%; text-align: left; z-index: 10;
-    }
+    .hero-content { max-width: 900px; z-index: 10; }
 
     .hero h1 {
       font-family: var(--fh);
-      font-size: clamp(2.8rem, 9vw, 6rem);
-      line-height: 0.9;
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      line-height: 0.95;
       text-transform: uppercase;
-      margin-bottom: 2rem;
       font-weight: 900;
+      margin-bottom: 1.5rem;
     }
     .hero h1 span { color: var(--orange); }
 
     .hero p {
       font-size: clamp(1rem, 2vw, 1.25rem);
-      max-width: 600px; opacity: 0.8; margin-bottom: 3rem;
+      max-width: 550px;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
     }
 
     .btn {
-      display: inline-block; background: var(--orange); color: #000;
-      padding: 1.25rem 3rem; border-radius: 50px;
+      display: inline-block; background: var(--orange); color: var(--bg);
+      padding: 1.25rem 2.5rem; border-radius: 50px;
       font-family: var(--fh); font-weight: 900; text-transform: uppercase;
-      text-decoration: none; transition: 0.3s; font-size: 1.1rem;
+      text-decoration: none; transition: 0.3s;
     }
-    .btn:hover { background: var(--orange-hover); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(224, 84, 42, 0.4); }
+    .btn:hover { 
+      background: var(--orange-hover); 
+      transform: translateY(-5px); 
+      box-shadow: 0 15px 40px rgba(224, 84, 42, 0.4); 
+    }
 
-    /* ── SECTIONS ───────────────────────────────────────────── */
-    section.content-sec {
-      padding: 6rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
+    /* ── SECTIONS ────────────────────────────────────────────── */
+    .section { padding: 8rem 2rem; max-width: 1400px; margin: 0 auto; }
+    h2 { 
+      font-family: var(--fh); font-size: 3rem; text-transform: uppercase; 
+      margin-bottom: 3rem; color: var(--orange); 
     }
-    h2 { font-family: var(--fh); font-size: 3rem; text-transform: uppercase; margin-bottom: 2rem; color: var(--orange); }
-    
+
     .event-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 2rem;
     }
     .card {
       background: var(--s900);
-      padding: 2rem;
-      border-radius: 20px;
-      border: 1px solid rgba(237, 224, 200, 0.1);
+      padding: 2.5rem;
+      border-radius: 24px;
+      border: 1px solid rgba(237, 224, 200, 0.05);
+      transition: 0.3s;
     }
+    .card:hover { border-color: var(--orange); transform: translateY(-5px); }
+    .card h3 { font-family: var(--fh); margin-bottom: 1rem; text-transform: uppercase; }
 
-    /* ── RESPONSIVE FIXES ──────────────────────────────────────── */
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
     @media (min-width: 1024px) {
       .nav-links { display: flex; }
       .hamburger { display: none; }
-      .hero { justify-content: flex-start; padding-left: 10%; }
-    }
-
-    @media (max-width: 1023px) {
-      .hero {
-        background-position: 82% center; /* Fokuserer på den rigtige del af dit billede */
-        text-align: left;
-      }
+      .hero { padding-left: 10%; }
     }
   </style>
 </head>
@@ -161,70 +152,50 @@
         <a href="#om">Om os</a>
         <a href="#kontakt">Kontakt</a>
       </div>
-      <button class="hamburger" id="menuToggle">
+      <button class="hamburger">
         <span class="ms">menu</span>
       </button>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#events">Events</a>
-      <a href="#om">Om os</a>
-      <a href="#kontakt">Kontakt</a>
     </div>
   </nav>
 
   <main>
     <section class="hero">
       <div class="hero-content">
-        <h1>FIND <span>SALSA- OG BACHATA</span> PÅ FÅ SEKUNDER</h1>
-        <p>Alt samlet ét sted. Slip for at lede rundt — find dine danseevents hurtigt og nemt i København.</p>
-        <a href="#events" class="btn">FIND EVENTS NU</a>
+        <h1>Find <span>Salsa- og Bachata</span> på få sekunder</h1>
+        <p>Alt samlet ét sted. Slip for at lede rundt – find dine danseevents hurtigt og nemt i København.</p>
+        <a href="#events" class="btn">Find events nu</a>
       </div>
     </section>
 
-    <section id="events" class="content-sec">
+    <section id="events" class="section">
       <h2>Kommende Events</h2>
       <div class="event-grid">
         <div class="card">
           <h3>Salsa Night</h3>
-          <p>Torsdag kl. 20:00 - Søpavillonen</p>
+          <p>Torsdag kl. 20:00 • Søpavillonen</p>
         </div>
         <div class="card">
-          <h3>Bachata Workshop</h3>
-          <p>Lørdag kl. 14:00 - Kedelhallen</p>
+          <h3>Bachata Social</h3>
+          <p>Fredag kl. 21:00 • Kedelhallen</p>
         </div>
         <div class="card">
-          <h3>Social Dancing</h3>
-          <p>Søndag kl. 19:00 - Fælledparken</p>
+          <h3>Kizomba Workshop</h3>
+          <p>Lørdag kl. 14:00 • Dansekapellet</p>
         </div>
       </div>
     </section>
 
-    <section id="om" class="content-sec" style="background: var(--s950); max-width: 100%;">
-      <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-        <h2>Om DanceMap</h2>
-        <p style="max-width: 800px; font-size: 1.2rem;">Vi er sat i verden for at gøre det nemt for dig at finde vej til dansegulvet. Ingen komplekse apps eller lukkede grupper – bare et hurtigt overblik over byens bedste beats.</p>
-      </div>
+    <section id="om" class="section" style="background: var(--s950); max-width: 100%;">
+       <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
+          <h2>Om DanceMap</h2>
+          <p style="max-width: 700px; font-size: 1.2rem;">Vi har gjort det til vores mission at samle alle byens beats ét sted, så du kan bruge mindre tid på at scrolle og mere tid på dansegulvet.</p>
+       </div>
     </section>
   </main>
 
-  <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuIcon = menuToggle.querySelector('.ms');
-
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-      menuIcon.textContent = mobileMenu.classList.contains('active') ? 'close' : 'menu';
-    });
-
-    // Luk menu ved klik på links
-    document.querySelectorAll('.mobile-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        menuIcon.textContent = 'menu';
-      });
-    });
-  </script>
+  <footer style="padding: 4rem 2rem; text-align: center; opacity: 0.5; font-size: 0.9rem;">
+    &copy; 2024 DanceMap — Copenhagen
+  </footer>
 
 </body>
 </html>
