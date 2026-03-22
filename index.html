@@ -388,24 +388,10 @@
     .foot-nav a:hover { color: var(--orange); }
 
     /* ── RESPONSIVE ─────────────────────────────────────────── */
-
-    .hero-img-col {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-    .hero-img-col img {
-      width: 100%;
-      max-width: 480px;
-      height: auto;
-      display: block;
-      border-radius: .5rem;
-    }
     @media (max-width: 767px) {
       .hero-inner {
-        grid-template-columns: 1fr !important;
+        
       }
-      .hero-img-col { display: none; }
     }
     @media (min-width: 640px) {
       .foot-inner { padding-inline: 3rem; }
